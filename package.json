@@ -1,0 +1,25 @@
+{
+  "name": "wts-syuukai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "waki285 <suzuneu@suzuneu.com>",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "decoration-replace": "^1.1.0",
+    "enquirer": "^2.3.6",
+    "freeze-selfbot": "^1.1.0",
+    "ms": "^2.1.3",
+    "ora": "^5.4.1",
+    "sjcl": "^1.0.8"
+  },
+  "bin": "index.js",
+  "devDependencies": {
+    "@types/sjcl": "^1.0.30"
+  }
+}
