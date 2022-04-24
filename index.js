@@ -13,6 +13,7 @@ const { replace } = require("decoration-replace");
 const names = ["wts", "want-to-sell"];
 const key = "5c9d64072a706ef5c0e394ce415e5da66450c38162cb6929e23c4966625ae660";
 
+
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const syuukai = async (client) => {
@@ -143,7 +144,7 @@ const syokai = async (spinner) => {
     spinner.text =
       "メモ帳に、WTSに投稿する内容を記載してください。(保存を忘れずに)終わったらメモ帳を閉じてください";
   });
-  progToOpen.on("close", () => {
+  progToOpen.on("close", async () => {
     spinner.succeed("メモ帳が閉じられました。");
     const data = fs.readFileSync(
       path.join(os.homedir(), "TEMP-WTS-SYUUKAI.txt"),
@@ -152,7 +153,7 @@ const syokai = async (spinner) => {
     fs.unlinkSync(path.join(os.homedir(), "TEMP-WTS-SYUUKAI.txt"));
     if (data.length < 1) {
       spinner.fail("保存された内容が空です。\n最初からやり直してください。");
-      return;
+      return await sleep(100000);
     }
     spinner = ora("Tokenを検証しています...").start();
     const client = new discord.Client();
@@ -179,10 +180,10 @@ const syokai = async (spinner) => {
         tugi(token, data, spinner);
         client.destroy();
       })
-      .catch((e) => {
+      .catch(async (e) => {
         console.log(e);
         spinner.fail("Tokenが死んでいます。\n最初からやり直してください。");
-        return;
+        return await sleep(100000);
       });
   });
 };
@@ -370,12 +371,17 @@ const menu = async (spinner) => {
   await sleep(1000);
   let spinner = ora("設定ファイルを探しています...").start();
   if (!fs.existsSync(path.join(os.homedir(), ".wts-syuukai.config"))) {
-    syokai(spinner);
+    return syokai(spinner);
   } else {
     spinner.succeed("設定ファイルが見つかりました。");
-    menu(spinner);
+    return menu(spinner);
   }
 })();
 
 //💵┆𝐰𝐚𝐧𝐭-𝐭𝐨-𝐬𝐞𝐥𝐥
 //💵┆want-to-sell
+
+process.on("uncaughtException", (err) => {
+  console.log("\nエラー出たよ開発者に報告してねー")
+  console.log(err);
+})
