@@ -1,7 +1,6 @@
 const { prompt } = require("enquirer");
 const fs = require("fs");
 const discord = require("freeze-selfbot");
-const crypto = require("crypto");
 const sjcl = require("sjcl");
 const ora = require("ora");
 const os = require("os");
@@ -120,14 +119,6 @@ const syokai = async (spinner) => {
     validate(value) {
       if (value.length < 1) {
         return "Tokenを入力してください。";
-      }
-      if (
-        !value.match(
-          /^[a-zA-Z0-9-_]{21,26}\.[a-zA-Z0-9-_]{4,8}\.[a-zA-Z0-9-_]{23,29}$/
-        ) &&
-        !value.match(/^mfa.[a-zA-Z0-9_-]{20,60}/)
-      ) {
-        return "Tokenが不正です。";
       }
       return true;
     },

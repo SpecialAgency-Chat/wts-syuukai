@@ -14,11 +14,12 @@
     "decoration-replace": "^1.1.0",
     "enquirer": "^2.3.6",
     "freeze-selfbot": "^1.1.0",
+    "javascript-obfuscator": "^4.0.0",
     "ms": "^2.1.3",
     "ora": "^5.4.1",
     "sjcl": "^1.0.8"
   },
-  "bin": "index.js",
+  "bin": "dest.js",
   "devDependencies": {
     "@types/sjcl": "^1.0.30"
   }
