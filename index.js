@@ -10,6 +10,7 @@ const chalk = require("chalk");
 const { replace } = require("decoration-replace");
 
 const names = ["wts", "want-to-sell"];
+//どうでもいいkey
 const key = "5c9d64072a706ef5c0e394ce415e5da66450c38162cb6929e23c4966625ae660";
 
 
